@@ -1,0 +1,37 @@
+<html>
+
+<head>
+
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Wikipedia Viewer">
+<title>Wikipedia search API</title>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel='stylesheet' type="text/css" href='wiki-api.css'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type='text/javascript' src='script.js'></script>
+</head>
+<body>
+  <div class="container-fluid">
+ <h1>Wikipedia Search API</h1>
+  <p class="wiki"></p>
+ <form class="searchForm">
+   <div class="form-group">
+   <input class="searchBox" type="search" placeholder="Search..."/>
+     <input class="submitBtn" type="submit" value="Click"/></div></form>
+    
+     <article class="random">
+      <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">
+        <button type="button" class="btn">Random Article</button>
+      </a></article>
+<br><br><br><br><br><br><br>    
+    
+  <div class="results">
+
+  </div>  
+ </div> 
+</body>
+</html>

@@ -1,5 +1,40 @@
 $(document).ready(function(){
   
+ var arrTimes = [];
+var i = 0; // start
+var timesToTest = 5;
+var tThreshold = 150; //ms
+var testImage = "https://github.githubassets.com/favicons/favicon.svg"; // small image in your server
+var dummyImage = new Image();
+var isConnectedFast = false;
+
+testLatency(function(avg){
+  isConnectedFast = (avg <= tThreshold);
+  /** output */
+  document.body.appendChild(
+    document.createTextNode("Time: " + (avg.toFixed(2)) + "ms - isConnectedFast? " + isConnectedFast)
+  );
+});
+
+/** test and average time took to download image from server, called recursively timesToTest times */
+function testLatency(cb) {
+  var tStart = new Date().getTime();
+  if (i<timesToTest-1) {
+    dummyImage.src = testImage + '?t=' + tStart;
+    dummyImage.onload = function() {
+      var tEnd = new Date().getTime();
+      var tTimeTook = tEnd-tStart;
+      arrTimes[i] = tTimeTook;
+      testLatency(cb);
+      i++;
+    };
+  } else {
+    /** calculate average of array items then callback */
+    var sum = arrTimes.reduce(function(a, b) { return a + b; });
+    var avg = sum / arrTimes.length;
+    cb(avg);
+  }
+}
   
  var html = '';
 /*as the name implies :)*/
@@ -39,22 +74,5 @@ function handleSearch(){
 }/*end of handleSearch*/
   
  handleSearch();
-
- //if ("geolocation" in navigator) {
-//   // check if geolocation is supported/enabled on current browser
-//   navigator.geolocation.getCurrentPosition(
-//    function success(position) {
-//         console.log('latitude', position.coords.latitude, 
-//                  'longitude', position.coords.longitude);
-//    },
-//   function error(error_message) {
-//    console.error('An error has occured while retrieving location', error_message)
-//   }  
-// );
-// } else {
-//   // geolocation is not supported
-//   // get your location some other way
-//   console.log('geolocation is not enabled on this browser')
-// }
 
 });
